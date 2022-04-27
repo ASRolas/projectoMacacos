@@ -1,0 +1,29 @@
+{
+  "name": "projectomacacos",
+  "version": "1.0.0",
+  "description": "This is an Artificial Inteligence project developed by me, Germano Kazembe,Edmilson Rolas & Aurélio Macie. ",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerryjohny/projectoMacacos.git"
+  },
+  "keywords": [
+    "monkey",
+    "macaco",
+    "banana",
+    "Germano",
+    "Kazembe",
+    "Rolas",
+    "Aurélio"
+  ],
+  "author": "Germanom Kazembe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerryjohny/projectoMacacos/issues"
+  },
+  "homepage": "https://github.com/jerryjohny/projectoMacacos#readme",
+  "type": "module"
+}
