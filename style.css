@@ -1,12 +1,17 @@
 html{
     height: 100vh;
-    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 body{
     
     width: 100%;
     height: 100vh;
     margin: auto;
+    background: gray;
 }
 
 header{
@@ -24,8 +29,8 @@ header > h1{
     text-transform: uppercase;
     color: rgba(7, 80, 175, 0.705);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: relative;
 }
-
 .pai{
     margin-top: 50px;
     align-content: space-between;
@@ -34,76 +39,83 @@ header > h1{
     display: inline-block;
     margin-left: 0px;
     margin-right: 2%;
-    
 }
-
-.pai select{
-    
-    margin-right: 10px;
-    float:right;
-}
-
 .prog{
     width: 100%;
-    height: 70%;
+    height: 87%;
 }
-
 .estado{
-    width: 40%; 
-    height: 90%;
-    font-weight: lighter;
-    font-size: small;
-    float: left;
-    background: rgb(197, 189, 189);
-    margin-left: 4%;
-    margin-top: 2%;
-}
-.chat{
-    padding-top: 4%;
-    width: 50%; 
-    height: 100%;
-    font-weight: lighter;
-    font-size: small;
-    float: right;
-    display: inline;
-}
-
-.alinhador{
-    width: 85%;
-    height: 20%;
-    float: right;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    
-}
-.chat-balloon{
-
     width: 80%; 
-    height: 100%;
-    font-weight: bold;
-    font-size: large;
-    background:rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    margin-left: 3%;
-    float: left;
-    color: rgb(0, 0, 0);
-    padding-top: 2px;
-    padding-left: 3%;
-    text-overflow: ellipsis;
-}
-
-#monkey-ic{
-
-    width: 12%; 
-    height: 76%;
+    height: 97%;
+    font-weight: lighter;
+    font-size: small;
+    margin-top: 12px;
+    margin-right: 2px;
+    margin-bottom: 2px;
     float: right;
-    margin-top: 1.2%;
 }
-
-.img-estado{
+.img-cenario{
     width: 100%;
     height: 100%;
+    border-radius: 20px;
+    border-bottom-left-radius: 0%;
+    border-top-left-radius: 0%;
 }
+
+.butoes{
+    height: 97%; 
+    width:18%; float:left; 
+    margin-top:12px;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+    margin-left: 1%;
+    display: block;
+    padding-top: 50px;
+    position: relative;
+    padding-left: 1.5%;
+    border: 1px solid gray;
+}
+.coordenadas{
+    width: 130px;
+    height: 40px;
+    margin-left:5% ;
+    border-radius: 3px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 2px solid gray;
+    text-indent: 40%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 5%;
+}
+
+.toggles{
+    width: 98%;
+    height: 15%;
+    margin-top: 50px;
+}
+.radio-icons{
+    width: 35px; 
+    height:36px; 
+    display:inline;
+    margin-top:10px; 
+}
+
+label{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: gray;
+}
+
+h2{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: gray;
+    text-indent: 20%;
+  
+    
+}
+
+
 
 
 

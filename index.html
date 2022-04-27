@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        
+</head>
+
+<body>
+        <header>
+            <h1 class="ia">ia</h1>
+        </header>
+         <!--Div-container, alberga a div lateral esquerda (inputs) e lateral direita (cenário)-->
+        <div class="prog">
+            <!--Div lateral esquerda contendo inputs-->
+            <div class="butoes" >
+                <h2>Poisição</h2>
+                <div class="toggles">
+                    <!--Formulário dos radio buttons-->
+                    <form >
+                        <label for ="macaco"><img src="img/lastt_monkey-removebg-preview.png" class="radio-icons" ></label>
+                          <input type ="radio" class="r" id="macaco" value="macaco" name="seleccionado">
+                          <label for = "cadeira"><img src="img/chair-removebg-preview.png" class="radio-icons" ></label>
+                          <input type ="radio" class="r" id="cadeira" value="cadeira" name="seleccionado" >
+                          <label for = "pau"><img src="img/Brown-Stick-removebg-preview.png" class="radio-icons"  ></label>
+                          <input type="radio" class="r" id="pau" value="pau" name="seleccionado">
+                    </form>
+                </div>
+                <label for="x" id="x_min_label" >460</label><input  title="Eixo X" type="number" id="x" name="quantity" min="1" max="5" class="coordenadas" placeholder="X" ><label for="x" id="x_max_label">1250</label><br>
+                <label for="y"  id="y_min_label">340</label><input title="Eixo y"  type="number" id="y" name="quantity" min="1" max="5" class="coordenadas" placeholder="Y" ><label for="y" id="x_max_label">510</label>
+            
+            </div>
+             <!--imagens dos objectos do programa-->
+             <img src="img/banana2-removebg-preview.png" class="obj-bananas" id="obj-bananas" style="position: absolute; width:100px; height:125px; left:900px; top:100px;">
+             <img src="img/chair2-removebg-preview.png" class="obj-cadeira" id="obj-cadeira" style="position: absolute; width:180px; height:180px; left: 890px; top:380px;">
+             <img src="img/528-5284814_transparent-monkey-clipart-monkey-cartoon-png-download-removebg-preview.png" class="obj" id="obj" style="position: absolute; width:120px; height:180px; left:925px; top: 320px;">
+             <img src="img/pau-removebg-preview.png" class="obj-pau" id="obj-pau" style="position: absolute; width:100px; height:218px; left:900px; top:160px;">
+            
+             <!--Div que alberga o cenário do programa (a sala)-->
+             <div class="estado">
+                <img src="img/room2.jpg" alt="" class="img-cenario">
+            </div>
+        </div>
+     <script src="scripts.js "   ></script>
+</body>
+
+</html>
