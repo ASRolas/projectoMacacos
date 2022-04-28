@@ -178,7 +178,7 @@ function aplicarAccao(listaAccoes){
             macaco.style.top=parseFloat(pau.style.top)+"px"
             
           }
-    }
+    }else
     if (accaoPorAplicar=="BC") {//E7
 
       if (parseFloat(macaco.style.left) < parseFloat(cadeira.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
@@ -445,7 +445,8 @@ $(".r").click(function(){
 $(".coordenadas").keypress(function(){
   
   let unicode = event.keyCode;
-  if (unicode==13) {
+  
+  if (unicode==32) {
     var a = new Array()
     alert(determinarAccao(estado1)[0].destino.heuristica)
     // a=executarAccao(estado13)
