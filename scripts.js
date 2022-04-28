@@ -148,9 +148,37 @@ function determinarAccao(estado){
           }
         }
       }
-  return listaAccoes
+      return listaAccoes
+  }else{
+    listaAccoes=listaAccoes
+    return listaAccoes
   }
 
+  
+}
+//Aplicar acção
+function aplicarAccao(listaAccoes){
+ var accaoPorAplicar= listaAccoes[0].codigo
+ var bananas=  document.getElementById("obj-bananas")
+ var macaco =  document.getElementById("obj")
+ var cadeira=  document.getElementById("obj-cadeira")
+ var pau =     document.getElementById("obj-pau")
+
+    if (accaoPorAplicar=="BP") {
+
+          if (parseFloat(macaco.style.left) < parseFloat(pau.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
+
+            macaco.style.left=parseFloat(pau.style.left)-10+"px"
+            macaco.style.top=parseFloat(pau.style.top)+60+"px"
+            
+          }
+          if (parseFloat(macaco.style.left) > parseFloat(pau.style.left)) {//se o macaco estiver á direita da cadeira tem que se aproximar até +10px a direita da cadeira
+
+            macaco.style.left=parseFloat(pau.style.left) + 60 +"px"
+            macaco.style.top=parseFloat(pau.style.top)+"px"
+            
+          }
+    }
 }
 //metodo que verifica os estados
 function verificarEstado(bananasTop, bananasLeft, macacoTop, macacoLeft, cadeiraTop, cadeiraLeft,pauTop, pauLeft){
@@ -257,6 +285,8 @@ function verificarEstado(bananasTop, bananasLeft, macacoTop, macacoLeft, cadeira
         estado.cadeira.top=cadeiraTop
         estado.cadeira.left=cadeiraLeft
         alert(estado.mensagem)
+        aplicarAccao(determinarAccao(estado))
+
   }
    //macaco com o pau, no lugar mas longe da cadeira E7
    if( Math.abs(parseFloat(macacoLeft)-parseFloat(bananasLeft)) < 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft)) < 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft)) < 80 && Math.abs(parseFloat(cadeiraLeft)-parseFloat(bananasLeft)) > 80){
