@@ -3,7 +3,7 @@ var  estado1 ={//estado em que está tudo espalhado
   num: 1,
   heuristica: 9,
   descendentes: [2,3,4],
-  accoes:  [{accao:"Buscar_cadeira",destino: 2},{accao:"Buscar pau",destino:3},{accao:"Ir ao local",destino:4}],
+  accoes:  [{accao:"Buscar_cadeira",destino: 2, id:"BC"},{accao:"Buscar pau",destino:3, id:"BP"},{accao:"Ir ao local",destino:4, id:"IL"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -14,7 +14,7 @@ var  estado2 ={//estado em que o macaco está com a cadeira  longe das bananas e
   num: 2,
   heuristica: 8,
   descendentes: [5,6],
-  accoes:  [{accao:"Buscar o pau", destino:5},{accao:"Levar cadeira  ao local",destino:6}],
+  accoes:  [{accao:"Buscar o pau", destino:5, id:"BP"},{accao:"Levar cadeira  ao local",destino:6, id:"LC"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -25,7 +25,7 @@ var  estado3 ={//estado em que o macaco está com o pau  longe das bananas e da 
   num: 3,
   heuristica: 8,
   descendentes: [7,5],
-  accoes:  [{accao:"Levar o pau ao local", destino:7},{accao:"Buscar a cadeira", destino:5}],
+  accoes:  [{accao:"Levar o pau ao local", destino:7, id:"LP"},{accao:"Buscar a cadeira", destino:5, id:"BC"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -36,7 +36,7 @@ var  estado4 ={//estado em que o macaco está no local das bananas e longe da ca
   num: 4,
   heuristica: 8,
   descendentes: [2,3],
-  accoes:  [{accao:"Buscar a cadeira", destino:2},{accao:"Buscar o pau", destino3}],
+  accoes:  [{accao:"Buscar a cadeira", destino:2, id:"BC"},{accao:"Buscar o pau", destino:3, id:"BP"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -46,8 +46,8 @@ var  estado4 ={//estado em que o macaco está no local das bananas e longe da ca
 var  estado5 ={//estado em que o macaco está com o pau e a cadeira  longe das bananas
   num: 5,
   heuristica: 8,
-  descendentes: [3,4],
-  accoes:  ["Levar ambos ao local"],
+  descendentes: [11],
+  accoes:  [{accao:"Levar ambos ao local", destino:11, id:"LAL"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -60,7 +60,7 @@ var  estado6 ={//estado em que o macaco está com a cadeira no local das bananas
   num: 6,
   heuristica: 8,
   descendentes: [12],
-  accoes:  ["Buscar o pau"],
+  accoes:  [{accao:"Buscar o pau", destino:12, id:"BP"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -71,7 +71,7 @@ var  estado7 ={//estado em que o macaco está com o pau  no lugar e longe da cad
   num: 7,
   heuristica: 8,
   descendentes: [13],
-  accoes:  ["Buscar a cadeira"],
+  accoes:  [{accao:"Buscar a cadeira", destino:13, id:"BC"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -81,8 +81,8 @@ var  estado7 ={//estado em que o macaco está com o pau  no lugar e longe da cad
 var  estado11 = {//estado em que está tudo no lugar
   num: 11,
   heuristica: 8,
-  descendentes: [0],
-  accoes:  ["Bater as bananas"],
+  descendentes: [11],
+  accoes:  [{accao:"Bater as bananas", destino:11, id:"BB"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -93,7 +93,7 @@ var  estado12 ={//cadeira no lugar, macaco com o pau e distantes
   num: 12,
   heuristica: 8,
   descendentes: [11],
-  accoes:  ["Levar o pau ao local"],
+  accoes:  [{accao:"Levar o pau ao local", destino:11, id:"LP"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -104,7 +104,7 @@ var  estado13 ={//pau no lugar, macaco com a cadeira e distantes
   num: 13,
   heuristica: 8,
   descendentes: [11],
-  accoes:  ["Levar a cadeira ao local"],
+  accoes:  [{accao:"Levar a cadeira ao local", destino:11, id:"LC"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -115,7 +115,7 @@ var  estado0 ={//pau no lugar, macaco com a cadeira e distantes
   num: 0,
   heuristica: 8,
   descendentes: [11],
-  accoes:  ["Ir ao local"],
+  accoes:  [{accao:"Ir ao local", destino:11, id:"IL"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -190,7 +190,7 @@ $(".r").click(function(){
 
     $("#x_min_label").text("280")
     $("#x_max_label").text("1290")
-    $("#y_min_label").text("300")
+    $("#y_min_label").text("150")
     $("#y_max_label").text("400")
 
   }else{
