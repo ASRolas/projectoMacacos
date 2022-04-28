@@ -152,6 +152,36 @@ function determinarAccao(estado){
   }
 
 }
+//Aplicar acção
+function aplicarAccao(listaAccoes){
+ var accaoPorAplicar= listaAccoes[0].codigo
+ var bananas=  document.getElementById("obj-bananas")
+ var macaco =  document.getElementById("obj")
+ var cadeira=  document.getElementById("obj-cadeira")
+ var pau =     document.getElementById("obj-pau")
+
+ if (codigo==="BC") {
+
+  if (parseFloat(macaco.style.left) < parseFloat(cadeira.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
+
+    macaco.style.left=parseFloat(cadeira.style.left) - 10 +"px"
+    macaco.style.top=parseFloat(cadeira.style.top)+"px"
+    
+  }
+  if (parseFloat(macaco.style.left) > parseFloat(cadeira.style.left)) {//se o macaco estiver á direita da cadeira tem que se aproximar até +10px a direita da cadeira
+
+    macaco.style.left=parseFloat(cadeira.style.left) + 60 +"px"
+    macaco.style.top=parseFloat(cadeira.style.top)+"px"
+    
+  }
+
+  
+   
+   
+ }
+
+ 
+}
 //metodo que verifica os estados
 function verificarEstado(bananasTop, bananasLeft, macacoTop, macacoLeft, cadeiraTop, cadeiraLeft,pauTop, pauLeft){
   //tudo junto E11 goal
