@@ -55,7 +55,7 @@ var  estado0 ={//pau e cadeira no lugar, macaco distante. E0 outro estado inicia
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
   cadeira: { top: Number, left: Number},
-  mensagem:"O pau e a cadeira estão no lugar, eu estou distante!"
+  mensagem:"O pau e a cadeira estão no lugar, eu estou distante, então tenho que ir ao local"
 }
 
 var  estado7 ={//estado em que o macaco está com o pau  no lugar e longe da cadeira
@@ -93,9 +93,9 @@ var  estado5 ={//estado em que o macaco está com o pau e a cadeira  longe das b
 }
 var  estado3 ={//estado em que o macaco está com o pau  longe das bananas e da cadeira
   num: 3,
-  heuristica: 4,
+  heuristica: 2,
   descendentes: [estado7,estado5],
-  accoes:  [{accao:"Levar o pau ao local", destino:estado7, codigo:"LP"},{accao:"Buscar a cadeira", destino:estado5, codigo:"BC"}],
+  accoes:  [{accao:"Levar o pau ao local", destino:estado7, codigo:"LP"},{accao:"Buscar a cadeira", destino:estado5, codigo:"IPBC"}],
   bananas: { top: Number, left: Number},
   macaco:  { top: Number, left: Number},
   pau:     { top: Number, left: Number},
@@ -136,7 +136,50 @@ var  estado1 ={//estado em que está tudo espalhado
   cadeira: { top: Number, left: Number},
   mensagem:"Neste estado eu tenho duas alternativas, ir buscar o pau primeiro ou a cadeira primeiro ou ainda, posso ir ao local das bananas"
 }
-
+var  estado01 ={//macaco no lugar, cadeira e pau juntos fora do lugar  //novo
+  num: 01,
+  heuristica: 8,
+  descendentes: [estado5],
+  accoes:  [{accao:"Ir buscar cadeira e pau ", destino: estado5, codigo:"IBC&P"}],
+  bananas: { top: Number, left: Number},
+  macaco:  { top: Number, left: Number},
+  pau:     { top: Number, left: Number},
+  cadeira: { top: Number, left: Number},
+  mensagem:"O pau e a cadeira estao juntos e longe de mim, tenho que buscá-los"
+}
+var  estado02 ={//pau no lugar, cadeira e macaco longe e distantes entre si  //novo
+  num: 02,
+  heuristica: 8,
+  descendentes: [estado5],
+  accoes:  [{accao:"Ir buscar cadeira ", destino: estado5, codigo:"BC"}],
+  bananas: { top: Number, left: Number},
+  macaco:  { top: Number, left: Number},
+  pau:     { top: Number, left: Number},
+  cadeira: { top: Number, left: Number},
+  mensagem:"Pau no lugar, eu e acadeira estamos distantes das bananas e distantes entre nós, devo ir buscar o cadeira"
+}
+var  estado03 ={//cadeira no lugar, pau e macaco longe e distantes entre si  //novo
+  num: 03,
+  heuristica: 8,
+  descendentes: [estado5],
+  accoes:  [{accao:"Ir buscar pau ", destino: estado12, codigo:"BP"}],
+  bananas: { top: Number, left: Number},
+  macaco:  { top: Number, left: Number},
+  pau:     { top: Number, left: Number},
+  cadeira: { top: Number, left: Number},
+  mensagem:"cadeira no lugar, eu e o pau estamos distantes das bananas e distantes entre nós, devo ir buscar a pau"
+}
+var  estado04 ={//Cadeira e pau juntos, longe do lugar e longe do macaco que também está longe do lugar //novo
+  num: 04,
+  heuristica: 8,
+  descendentes: [estado5,estado01],
+  accoes:  [{accao:"Ir buscar ambos ", destino: estado5, codigo:"IBC&P"},{accao:"Ir ao local",destino: estado01, codigo:"IL"}],
+  bananas: { top: Number, left: Number},
+  macaco:  { top: Number, left: Number},
+  pau:     { top: Number, left: Number},
+  cadeira: { top: Number, left: Number},
+  mensagem:"Estou longe de tudo, porém a cadeira e o pau  estão juntos, mas também longe das bananas, então vou buscar ambos"
+}
 
 //metodo das accoes
 function determinarAccao(estado){
@@ -165,7 +208,6 @@ function determinarAccao(estado){
     listaAccoes=listaAccoes
     return listaAccoes
   }
-
   
 }
 //Aplicar acção
@@ -222,8 +264,6 @@ function aplicarAccao(listaAccoes){
       macaco.style.top=parseFloat(bananas.style.top)+225+"px"
       cadeira.style.left=parseFloat(bananas.style.left)+"px"
       cadeira.style.top=parseFloat(bananas.style.top)+300+"px"
-      
-      
     }
    }
    else
@@ -235,8 +275,6 @@ function aplicarAccao(listaAccoes){
       cadeira.style.top=parseFloat(bananas.style.top)+280+"px"
       pau.style.left=parseFloat(bananas.style.left)+"px"
       pau.style.top=parseFloat(bananas.style.top)+60+"px"
-      
-    
    }
    else
    if (accaoPorAplicar=="LP") {//E12
@@ -262,8 +300,24 @@ function aplicarAccao(listaAccoes){
       macaco.style.top=parseFloat(pau.style.top)+50+"px"
       cadeira.style.left=parseFloat(pau.style.left)+"px"
       cadeira.style.top=parseFloat(pau.style.top)+80+"px"
+    }
+   }
+   if (accaoPorAplicar=="IPBC") {//E13
+
+    if (parseFloat(macaco.style.left) < parseFloat(cadeira.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
+
+      macaco.style.left=parseFloat(cadeira.style.left)-10+"px"
+      macaco.style.top=parseFloat(cadeira.style.top)+50+"px"
+      pau.style.left=parseFloat(cadeira.style.left)+20+"px"
+      pau.style.top=parseFloat(pau.style.top)+80+"px"
       
-      
+    }
+    if (parseFloat(macaco.style.left) > parseFloat(cadeira.style.left)) {//se o macaco estiver á direita da cadeira tem que se aproximar até +10px a direita da cadeira
+
+      macaco.style.left=parseFloat(cadeira.style.left)+50+"px"
+      macaco.style.top=parseFloat(cadeira.style.top)+50+"px"
+      pau.style.left=parseFloat(cadeira.style.left)+"px"
+      pau.style.top=parseFloat(cadeira.style.top)+80+"px"
     }
    }
    if (accaoPorAplicar=="LAL") {//
@@ -284,16 +338,38 @@ function aplicarAccao(listaAccoes){
        cadeira.style.left=parseFloat(bananas.style.left)+10+"px"
        //cadeira.style.top=parseFloat(bananas.style.top)+80+"px"
        pau.style.left=parseFloat(bananas.style.left)+10+"px"
-      
-      
     }
-   }
-}//fechou
+   }else
+   if (accaoPorAplicar=="IL") {//
 
-//     metodo que verifica os estados
+        if (parseFloat(macaco.style.left) < parseFloat(bananas.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
+
+          macaco.style.left=parseFloat(bananas.style.left)-10+"px"
+        }
+        if (parseFloat(macaco.style.left) > parseFloat(bananas.style.left)) {//se o macaco estiver á direita da cadeira tem que se aproximar até +10px a direita da cadeira
+
+          macaco.style.left=parseFloat(bananas.style.left)+50+"px"
+      }
+   }
+   if (accaoPorAplicar=="IBC&P") {//
+
+    if (parseFloat(macaco.style.left) < parseFloat(pau.style.left)) {//se o macaco estiver á esquerda da cadeira tem que se aproximar até -10px a esquerda da cadeira
+
+      macaco.style.left=parseFloat(pau.style.left)-10+"px"
+    }
+    if (parseFloat(macaco.style.left) > parseFloat(pau.style.left)) {//se o macaco estiver á direita da cadeira tem que se aproximar até +10px a direita da cadeira
+
+      macaco.style.left=parseFloat(pau.style.left)+50+"px"
+  }
+}
+
+}
+// metodo que verifica os estados
 function verificarEstado(bananasTop, bananasLeft, macacoTop, macacoLeft, cadeiraTop, cadeiraLeft,pauTop, pauLeft){
   //tudo junto E11 goal
   if( Math.abs(parseFloat(pauTop)-parseFloat(bananasTop))<= 80 && Math.abs(parseFloat(macacoTop)-parseFloat(pauTop))<=200 && Math.abs(parseFloat(cadeiraTop)-parseFloat(macacoTop)) <= 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft))<=10 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft))<=30 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) <= 40  ){
+    var macaco= document.getElementById("obj")
+    macaco.style.left=parseFloat(pauLeft) + 30+"px"
     var estado= estado11;
         estado.bananas.top=bananasTop
         estado.bananas.left=bananasLeft
@@ -465,6 +541,62 @@ function verificarEstado(bananasTop, bananasLeft, macacoTop, macacoLeft, cadeira
           aplicarAccao(determinarAccao(estado))
     }
   else
+      //cadeira e pau juntos mas fora do lugar
+      if(  Math.abs(parseFloat(macacoLeft)-parseFloat(bananasLeft)) < 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(cadeiraLeft)) <= 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(cadeiraLeft)-parseFloat(bananasLeft)) > 80){
+        var estado= estado01;
+            estado.bananas.top=bananasTop
+            estado.bananas.left=bananasLeft
+            estado.macaco.top=macacoTop
+            estado.macaco.left=macacoLeft
+            estado.pau.top=pauTop
+            estado.pau.left=pauLeft
+            estado.cadeira.top=cadeiraTop
+            estado.cadeira.left=cadeiraLeft
+            alert(estado.mensagem)
+            aplicarAccao(determinarAccao(estado))
+      }else
+         //pau no lugar, cadeira e macaco distantes e distantes entre si E02
+         if(  Math.abs(parseFloat(macacoLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft)) < 80 && Math.abs(parseFloat(cadeiraLeft)-parseFloat(bananasLeft)) > 80){
+          var estado= estado02;
+              estado.bananas.top=bananasTop
+              estado.bananas.left=bananasLeft
+              estado.macaco.top=macacoTop
+              estado.macaco.left=macacoLeft
+              estado.pau.top=pauTop
+              estado.pau.left=pauLeft
+              estado.cadeira.top=cadeiraTop
+              estado.cadeira.left=cadeiraLeft
+              alert(estado.mensagem)
+              aplicarAccao(determinarAccao(estado))
+        }else
+           //cadeira no lugar, pau e macaco distantes e distantes entre si E03
+           if(  Math.abs(parseFloat(macacoLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(cadeiraLeft)-parseFloat(bananasLeft)) < 80){
+            var estado= estado03;
+                estado.bananas.top=bananasTop
+                estado.bananas.left=bananasLeft
+                estado.macaco.top=macacoTop
+                estado.macaco.left=macacoLeft
+                estado.pau.top=pauTop
+                estado.pau.left=pauLeft
+                estado.cadeira.top=cadeiraTop
+                estado.cadeira.left=cadeiraLeft
+                alert(estado.mensagem)
+                aplicarAccao(determinarAccao(estado))
+          }else
+           //cadeira e pau juntos e longe do lugar e do macaco que está tambem longe do lugar
+           if(  Math.abs(parseFloat(macacoLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(pauLeft)) > 80 && Math.abs(parseFloat(macacoLeft)-parseFloat(cadeiraLeft)) > 80 && Math.abs(parseFloat(pauLeft)-parseFloat(cadeiraLeft)) < 80 && Math.abs(parseFloat(pauLeft)-parseFloat(bananasLeft)) > 80 && Math.abs(parseFloat(cadeiraLeft)-parseFloat(bananasLeft)) > 80){
+            var estado= estado04;
+                estado.bananas.top=bananasTop
+                estado.bananas.left=bananasLeft
+                estado.macaco.top=macacoTop
+                estado.macaco.left=macacoLeft
+                estado.pau.top=pauTop
+                estado.pau.left=pauLeft
+                estado.cadeira.top=cadeiraTop
+                estado.cadeira.left=cadeiraLeft
+                alert(estado.mensagem)
+                aplicarAccao(determinarAccao(estado))
+          }
   {
     //alert("nada")
   }
@@ -479,6 +611,7 @@ function defCoordenadasIniciais(){
     var cadeira = document.getElementById("obj-cadeira")
     var x= document.getElementById("x")
     var y= document.getElementById("y")
+
     if (esc=="macaco") {
       macaco.style.top=y.value+"px"
       macaco.style.left=x.value+"px"
@@ -499,7 +632,7 @@ function defCoordenadasIniciais(){
     }
 }
 
-                                                      //  ACTIONLISTENERS   //
+//---------------------------------------------    //  ACTIONLISTENERS   //
 //Ao clicar em ia
 $(".ia").click(function(){
   var objecto = document.getElementById("obj")
@@ -558,39 +691,32 @@ $(".r").click(function(){
     alert("Voçê não selecionou um objecto")
   }
 });
-
-//Ao clickar enter para aplicar as posições
+//Ao clickar enter o b para aplicar as posições
 $(".coordenadas").keypress(function(){
-  let unicode = event.keyCode;
-  defCoordenadasIniciais()
-})
 
+  var bananas = document.getElementById("obj-bananas")
+  let unicode = event.keyCode;
+
+  if(unicode==13){ 
+    defCoordenadasIniciais()
+  }
+  if(unicode==98){ 
+    bananas.style.top=y.value+"px"
+    bananas.style.left=x.value+"px"
+  }
+})
 //Ao clickar run para executar as acções
 $("#run").click(function() {
+
    $("#run").css("transform","scale(0.9,0.9)")
-  
-    var a = new Array()
-    //alert(determinarAccao(estado1)[0].destino.heuristica)
     var bananas=  document.getElementById("obj-bananas")
     var macaco =  document.getElementById("obj")
     var cadeira=  document.getElementById("obj-cadeira")
     var pau =     document.getElementById("obj-pau")
 
-  // alert(Math.abs(parseFloat(macaco.style.top)-parseFloat(cadeira.style.top)))
-   
-    verificarEstado(
-
-      bananas.style.top,
-      bananas.style.left,
-      macaco.style.top,
-      macaco.style.left, 
-      cadeira.style.top,
-      cadeira.style.left,
-      pau.style.top,
-      pau.style.left
-
-    )
+    verificarEstado( bananas.style.top, bananas.style.left, macaco.style.top, macaco.style.left, cadeira.style.top, cadeira.style.left, pau.style.top,pau.style.left )
 })
+//mouse pairando sobre o RUN
 $("#run").mouseover(function() {
 
   $("#run").css("transform","scale(1.1,1.1)")
